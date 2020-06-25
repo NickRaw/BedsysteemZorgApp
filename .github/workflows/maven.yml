@@ -24,11 +24,11 @@ jobs:
       run: mvn -B package --file pom.xml
 
 
-  create:
 
-    runs-on: ubuntu-latest
 
-    steps:
-    - uses: actions/checkout@v2
+
+
+
+
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag nickrau/zorgapp:latest
