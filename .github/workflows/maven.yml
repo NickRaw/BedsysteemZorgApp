@@ -28,7 +28,7 @@ jobs:
 
 
     - name: Log into registry
-      run: docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+      run: docker login -u ${{ secrets.DOCKER_USERNAME }} --password ${{ secrets.DOCKER_PASSWORD }}
 
     - name: Push to dockerhub
       run: docker push nickrau/zorgapp
