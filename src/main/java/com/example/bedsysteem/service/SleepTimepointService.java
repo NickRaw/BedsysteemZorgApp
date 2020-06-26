@@ -66,4 +66,8 @@ public class SleepTimepointService {
     public List<SleepTimepoint> timepointsFromDateByHour(LocalDate date){
         return sleepTimepointRepo.findAllByDateOrderByHourDescMinuteDesc(date).stream().limit(4).collect(Collectors.toList());
     }
+
+    public List<SleepTimepoint> timepointsFromPatientByHourMinuteSecond(Patient patient){
+        return sleepTimepointRepo.findAllByPatientOrderByDateDescHourDescMinuteDesc(patient);
+    }
 }
