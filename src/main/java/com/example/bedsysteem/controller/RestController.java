@@ -1,11 +1,15 @@
 package com.example.bedsysteem.controller;
+import com.example.bedsysteem.data.entity.Bed;
 import com.example.bedsysteem.data.entity.Patient;
 import com.example.bedsysteem.data.entity.ResponseMessage;
 import com.example.bedsysteem.data.entity.SleepTimepoint;
+import com.example.bedsysteem.service.BedService;
 import com.example.bedsysteem.service.PatientService;
 import com.example.bedsysteem.service.SleepTimepointService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @org.springframework.web.bind.annotation.RestController
 @RequestMapping("/api")
@@ -15,6 +19,9 @@ public class RestController {
 
     @Autowired
     private PatientService patientService;
+
+    @Autowired
+    private BedService bedService;
 
     @PostMapping("/{id}/timepoint/new")
     public ResponseMessage addTimepoint(@PathVariable String id, @RequestBody SleepTimepoint timepoint){
@@ -52,5 +59,8 @@ public class RestController {
     public Patient getPatient(@PathVariable String id){
         return patientService.getOneById(id);
     }
+
+    @GetMapping("/beds")
+    public List<Bed> getBeds(){ return bedService.getAll();}
 
 }
