@@ -153,11 +153,9 @@
                                         <tr class="bg-light">
                                             <th class="border-top-0">Bednummer</th>
                                             <th class="border-top-0">Afdeling</th>
-                                            <th class="border-top-0">Patientnummer</th>
+                                            <th class="border-top-0">Patient Naam</th>
                                             <th class="border-top-0">In bed</th>
-                                            <th class="border-top-0">Tijd niet in bed (minuten)</th>
-                                            <th class="border-top-0">###</th>
-                                            <th class="border-top-0">###</th>
+                                            <th class="border-top-0">Tijd niet in bed (minuten : seconden)</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -175,14 +173,10 @@
                                             <td th:switch="${bed.patient != null and bed.patient.getLastSleepPoint() != null} ? ${bed.patient.getLastSleepPoint().getBedType().toString()} : null">
                                                 <label th:case="'TELAAT'" class="label label-danger">OVER TIJD!!!</label>
                                                 <label th:case="'INBED'" class="label label-success">In bed</label>
-                                                <label th:case="'UITBED'" class="label label-purple">Uit bed</label>
+                                                <label th:case="'UITBED'" class="label label-warning">Uit bed</label>
                                                 <label th:case="null" class="label label-purple">GEEN DATA</label>
                                             </td>
                                             <td th:text="${bed.patient != null and bed.patient.getLastSleepPoint() != null and (bed.patient.getLastSleepPoint().getBedType().toString() == 'UITBED' or bed.patient.getLastSleepPoint().getBedType().toString() == 'TELAAT')} ? ${(bed.patient.timeSinceOutBed() / 60).toString() + ':' +(bed.patient.timeSinceOutBed() % 60).toString()} : 'n.v.t.'">10:00</td>
-                                            <td>###</td>
-                                            <td>
-                                                <h5 class="m-b-0">###</h5>
-                                            </td>
                                         </tr>
 
                                     </tbody>

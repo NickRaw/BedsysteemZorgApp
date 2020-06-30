@@ -40,8 +40,9 @@ public class SleepTimepointService {
 
     public boolean addNew(SleepTimepoint sleepTimepoint, String bed_id){
         Bed bed = bedService.getOneById(bed_id);
-        Patient patient = patientService.getOneById(bed.getPatient().getId());
-        if(patient != null){
+
+        if(bed.getPatient() != null){
+            Patient patient = bed.getPatient();
             sleepTimepoint.setPatient(patient);
             sleepTimepoint.setDate(LocalDate.now());
             sleepTimepointRepo.save(sleepTimepoint);
