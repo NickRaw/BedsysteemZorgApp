@@ -1,8 +1,5 @@
 package com.example.bedsysteem.controller;
-import com.example.bedsysteem.data.entity.Bed;
-import com.example.bedsysteem.data.entity.Patient;
-import com.example.bedsysteem.data.entity.ResponseMessage;
-import com.example.bedsysteem.data.entity.SleepTimepoint;
+import com.example.bedsysteem.data.entity.*;
 import com.example.bedsysteem.service.BedService;
 import com.example.bedsysteem.service.PatientService;
 import com.example.bedsysteem.service.SleepTimepointService;
@@ -61,6 +58,10 @@ public class RestController {
     }
 
     @GetMapping("/beds")
-    public List<Bed> getBeds(){ return bedService.getAll();}
+    public BedList getBeds(){
+        BedList beds = new BedList();
+        beds.setBeds(bedService.getAll());
+        return beds;
+    }
 
 }
